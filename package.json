@@ -1,0 +1,18 @@
+{
+  "name": "mcpherson-weather-link",
+  "version": "1.2.0",
+  "type": "module",
+  "description": "Live McPherson, KS weather with KWCH-first (ZIP 67460) + NWS fallback (17th Ave), hourly logging and Excel-friendly export.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0",
+    "node-fetch": "^3.3.2"
+  }
+}
