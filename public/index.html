@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>McPherson, KS — Live Weather</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="row">
+      <div class="col col-8">
+        <h1>McPherson, KS — Live Weather</h1>
+        <div class="sub">
+          Station: <span id="stationName" aria-live="polite">(resolving…)</span>
+          &nbsp;•&nbsp; Last updated: <span id="lastUpdated" aria-live="polite">—</span>
+        </div>
+      </div>
+      <div class="col col-4 actions">
+        <button id="refreshBtn" type="button">Refresh now</button>
+        <button id="snapshotBtn" class="ghost" type="button">Snapshot now</button>
+      </div>
+    </header>
+
+    <section class="card" aria-label="Current Conditions">
+      <div class="kpis">
+        <div class="kpi"><div class="label">Air Temp (°F)</div><div class="value" id="tempF">—</div></div>
+        <div class="kpi"><div class="label">Humidity (%)</div><div class="value" id="rh">—</div></div>
+        <div class="kpi"><div class="label">Dry Bulb (°F)</div><div class="value" id="dryBulbF">—</div></div>
+        <div class="kpi"><div class="label">Wet Bulb (°F)</div><div class="value" id="wetBulbF">—</div></div>
+        <div class="kpi"><div class="label">Wind Speed (mph)</div><div class="value" id="windMph">—</div></div>
+        <div class="kpi"><div class="label">Wind Direction</div><div class="value" id="windDir">—</div></div>
+      </div>
+      <div class="kpis kpis-single">
+        <div class="kpi"><div class="label">Barometric Pressure (inHg)</div><div class="value" id="pressureInHg">—</div></div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Copy to Excel">
+      <h2>Copy to Excel — Current Values (single line TSV)</h2>
+      <div class="sub">Order: Time (local) • Temp °F • Humidity % • Dry Bulb °F • Wet Bulb °F • Wind mph • Wind Dir • Pressure inHg</div>
+      <textarea id="tsvField" class="mono" rows="2" readonly></textarea>
+      <div class="actions">
+        <button id="copyTSVBtn" type="button">Copy TSV</button>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Hourly Log">
+      <h2>Hourly Log (captured automatically at the top of each hour)</h2>
+      <div class="sub">Values are stored in your browser only. You can export or clear them any time.</div>
+      <div class="actions">
+        <button id="copyCSVBtn" type="button">Copy CSV</button>
+        <button id="downloadCSVBtn" type="button">Download CSV</button>
+        <button id="clearLogBtn" class="ghost" type="button">Clear log</button>
+      </div>
+      <div class="tableWrap">
+        <table id="logTable">
+          <thead>
+            <tr>
+              <th>Time (local)</th>
+              <th>Temp (°F)</th>
+              <th>Humidity (%)</th>
+              <th>Dry Bulb (°F)</th>
+              <th>Wet Bulb (°F)</th>
+              <th>Wind (mph)</th>
+              <th>Wind Dir</th>
+              <th>Pressure (inHg)</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="sub" style="margin-top:16px;">
+      Data served over HTTPS. Fetches immediately and refreshes roughly every minute.
+    </footer>
+
+    <div id="errorBox" class="error" hidden role="alert"></div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
